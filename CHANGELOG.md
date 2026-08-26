@@ -12,6 +12,179 @@ follows:
    releases, and Linux kernel updates. They're also made to fix bugs and add
    features to the build infrastructure.
 
+## v2.0.3
+
+This is a security and bug fix release.
+
+* Changes
+  * Use https for the backup site
+
+* Package updates
+  * [nerves_system_br 1.33.7](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.7)
+    * [Erlang/OTP 28.5](https://erlang.org/download/OTP-28.5.README.md)
+    * [fwup 1.16.0](https://github.com/fwup-home/fwup/releases/tag/v1.16.0)
+## v2.0.2
+
+This is a security update.
+
+* Package updates
+  * [nerves_system_br 1.33.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.5)
+    * [Erlang/OTP 28.4.2](https://erlang.org/download/OTP-28.4.2.README.md)
+    * [Buildroot 2025.11.3](https://lore.kernel.org/buildroot/124c21a6-5810-495e-8b85-f3db41afa1a9@rnout.be/T/)
+## v2.0.1
+
+This is a security update.
+
+* Package updates
+  * [nerves_system_br 1.33.4](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.4)
+    * [Erlang/OTP 28.4.1](https://erlang.org/download/OTP-28.4.1.README.md)
+    * [Buildroot 2025.11.2](https://lore.kernel.org/buildroot/de9c890a-760a-4e6d-86b8-f8e5000a07ff@rnout.be/T/)
+
+## v2.0.0
+
+This is a major update of `nerves_system_rpi4` that changes the MicroSD/eMMC
+layout in order to support automatic rollback of non-working firmware updates.
+
+**IMPORTANT** This is a one way upgrade. Going back to the old partitioning
+requires manually reflashing of the RPi's storage.
+
+Previous releases assumed that firmware updates worked. This one requires that
+firmware images mark themselves as good using
+`Nerves.Runtime.validate_firmware/0`. See `Nerves.Runtime` for more information
+on this. Firmware not marked as good reverts back to the previous version.
+
+* Changes
+  * Fix camera support by enabling the unicam-legacy Linux device driver
+  * Enabled multipath TCP support in the Linux kernel
+  * Deleted all use of `nerves_fw_active` since it was sometimes incorrect and
+    caused confusion
+
+* Package updates
+  * [nerves_system_br 1.33.2](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.2)
+    * [Erlang/OTP 28.3.1](https://erlang.org/download/OTP-28.3.1.README.md)
+    * [Buildroot 2025.11.1](https://lore.kernel.org/buildroot/f6496994-b279-46f4-b554-7dbe2df92782@rnout.be/T/)
+
+## v1.33.0
+
+This is a major Buildroot and Linux update. It should be seamless for most
+1.32.0 users.
+
+* Changes
+  * Refresh `ramoops-overlay.dts`. This actually changes the default pstore
+    settings to reserve less DRAM based on experience of not needing nearly as
+    much. Settings can be overridden now via the `config.txt`.
+  * Use EEx to generate the `fwup.conf`. This removes a lot of repetition. If
+    you've made a custom `fwup.conf`, please review git commit log for details.
+  * Add 5" Raspberry Pi Touch Display overlay
+
+* Updated dependencies
+  * Linux 6.12.47
+  * [nerves_system_br 1.33.0](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.33.0)
+    * [Buildroot 2025.11](https://lore.kernel.org/buildroot/87bjk439tj.fsf@dell.be.48ers.dk/T/)
+    * [Erlang/OTP 28.3](https://erlang.org/download/OTP-28.3.README.md)
+    * [fwup 1.15.0](https://github.com/fwup-home/fwup/releases/tag/v1.15.0)
+    * [erlinit 1.15.1](https://github.com/nerves-project/erlinit/releases/tag/v1.15.1)
+    * [nerves_heart 2.5.0](https://github.com/nerves-project/nerves_heart/releases/tag/v2.5.0)
+    * [boardid 1.15.0](https://github.com/nerves-project/boardid/releases/tag/v1.15.0)
+
+## v1.32.0
+
+This is a major Erlang and Buildroot update. This updates from Erlang/OTP 27 to
+Erlang/OTP 28.
+
+* Changes
+  * Remove unneeded call to `rngd` and the `rng-tools` package. This was
+    formerly needed to provide entropy to Linux during initialization.
+
+* Package updates
+  * [nerves_system_br v1.32.3 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.32.3)
+
+* Updated dependencies
+  * [Erlang/OTP 28.1.1](https://erlang.org/download/OTP-28.1.1.README.md)
+  * [Buildroot 2025.05.2](https://lore.kernel.org/buildroot/7bed9b2e-a9d3-476b-84d6-61134e2f726f@rnout.be/T/)
+
+## v1.31.4
+
+* Changes
+  * Synchronize and fix Raspberry Pi camera settings
+
+## v1.31.3
+
+This is an important security/bug fix that addresses Erlang CVEs for the ssh
+module (see Erlang release notes).
+
+* Package updates
+  * [nerves_system_br v1.31.7](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.31.7). Also
+    see [nerves_system_br v1.31.6](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.31.6)
+
+* Important derived package updates
+  * [Erlang/OTP 27.3.4.3](https://erlang.org/download/OTP-27.3.4.3.README.md)
+  * [Buildroot 2025.02.6](https://lore.kernel.org/buildroot/b051d400-debc-4269-975a-b2992eed8d61@rnout.be/T/)
+
+## v1.31.2
+
+This is a security/bug fix release.
+
+* Package updates
+  * [nerves_system_br v1.31.5](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.31.5)
+
+* Important derived package updates
+  * [Erlang/OTP 27.3.4.2](https://erlang.org/download/OTP-27.3.4.2.README.md)
+  * [fwup 1.13.2](https://github.com/fwup-home/fwup/releases/tag/v1.13.2)
+
+## v1.31.1
+
+This is a security/bug fix release.
+
+* Package updates
+  * [Erlang/OTP 27.3.4.1](https://erlang.org/download/OTP-27.3.4.1.README.md)
+  * [Buildroot 2025.02.3 (fixed 2025.02.2)](https://lore.kernel.org/buildroot/49d039c0-8121-4a91-8a69-889376f85c71@rnout.be/T/)
+  * Raspberry Pi WiFi firmware 1:20240709-2~bpo12+1+rpt3
+  * [rpi-libcamera v0.5.0+rpt20250429](https://github.com/raspberrypi/libcamera/releases/tag/v0.5.0%2Brpt20250429)
+  * rpicam-apps 1.7.0
+  * [erlinit 1.14.3](https://github.com/nerves-project/erlinit/releases/tag/v1.14.3)
+  * [fwup 1.13.0](https://github.com/fwup-home/fwup/releases/tag/v1.13.0)
+
+## v1.31.0
+
+This is a major Buildroot update.
+
+Please see the [nerves_system_br v1.31.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.31.0)
+for additional information if you've forked this system.
+
+* Changes
+  * Add support for the RPi Touch Display 2
+
+* Updated dependencies
+  * [Buildroot 2025.02.1](https://lore.kernel.org/buildroot/60b8483c-b717-41ce-a406-bceb71c3a089@rnout.be/T/)
+
+## v1.30.1
+
+This is a security/bug fix update.
+
+* Updated dependencies
+  * [Erlang/OTP 27.3.3](https://erlang.org/download/OTP-27.3.3.README)
+  * [nerves_system_br v1.30.1](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.30.1)
+
+## v1.30.0
+
+This is a major Buildroot update.
+
+Please see the [nerves_system_br v1.30.0 release notes](https://github.com/nerves-project/nerves_system_br/releases/tag/v1.30.0)
+for upgrade instructions if you've forked this system.
+
+* Changes
+  * Add REUSE compliance to help improve OSS copyright and licensing accuracy
+  * Update Raspberry Pi libraries and firmware to latest releases
+
+* Updated dependencies
+  * [Erlang/OTP 27.3](https://erlang.org/download/OTP-27.3.README.md)
+  * [Buildroot 2024.11.2](https://lore.kernel.org/buildroot/87v7t3nyls.fsf@dell.be.48ers.dk/T/)
+  * Linux 6.6.74 (Raspberry Pi 1.20250127 release)
+  * rpicam-apps 1.5.3
+  * rpi-libcamera v0.3.2+rpt20241119
+  * rpi-distro-firmware-nonfree 1:20230625-2+rpt3
+
 ## v1.29.1
 
 This is a security/bug fix update.
