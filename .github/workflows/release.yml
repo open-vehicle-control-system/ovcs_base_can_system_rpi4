@@ -6,20 +6,18 @@ name: build + release
 # Triggers:
 #   - push of any tag matching v* (e.g. v2.0.4) → build + create
 #     release with the tarball.
-#   - pull request → build only, artifact uploaded as a workflow
-#     artifact (no release attached). Note that workflow_dispatch is
-#     unavailable until this file is on the default branch, so a PR
-#     trigger is the only way to validate a change before merging.
-#   - manual workflow_dispatch → same as a PR run.
+#   - manual workflow_dispatch → build only, artifact uploaded as a
+#     workflow artifact (no release attached). Dispatch can target any
+#     branch once this file is on the default branch.
+#
+# TODO: add a `pull_request:` trigger once main is on the v2.0.x line.
+# It cannot be added before then — a PR build would check out the old
+# 1.29 (OTP 27) system and try to build it with the OTP 28 host pinned
+# below, which Mix refuses.
 
 on:
   push:
     tags: ["v*"]
-  # Also on PRs: a Buildroot run is the only thing that actually
-  # exercises the defconfigs, so a system change must not be merged
-  # unverified. Non-tag runs build and upload a workflow artifact
-  # without touching releases.
-  pull_request:
   workflow_dispatch:
 
 permissions:
