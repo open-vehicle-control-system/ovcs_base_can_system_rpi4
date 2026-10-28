@@ -20,5 +20,6 @@ erl_crash.dump
 /build.log
 /archive.log
 /.nerves
+/fwup.conf
 
 *.tar.gz

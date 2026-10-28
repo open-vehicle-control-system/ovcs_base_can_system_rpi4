@@ -8,7 +8,7 @@ It is used to run the [OVCS VMS](https://github.com/open-vehicle-control-system/
 ## Upstream base
 
 Tracks upstream [`nerves_system_rpi4`](https://github.com/nerves-project/nerves_system_rpi4)
-**v2.0.3** (`nerves_system_br` 1.33.7, Erlang/OTP 28.5).
+**v2.2.1** (`nerves_system_br` 1.35.3, Erlang/OTP 29.1.2, Linux 6.18).
 
 Upstream v2.0.0 changed the MicroSD/eMMC layout to A/B firmware slots
 with automatic rollback, and it is a **one-way** upgrade: a device on
